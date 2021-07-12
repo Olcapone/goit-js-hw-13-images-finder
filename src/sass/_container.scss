@@ -83,17 +83,24 @@
 //====== image gallery
 
 .gallery {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
   list-style: none;
   padding-bottom: 30px;
 
-  & .photo-card:not(:nth-child(-n + 2)) {
-    margin-top: 40px;
+  @media screen and (min-width: 780px) {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    & .photo-card:not(:nth-child(-n + 2)) {
+      margin-top: 40px;
+    }
   }
 }
+
 .photo-card {
+  @media screen and (max-width: 779px) {
+    margin-bottom: 30px;
+  }
+
   max-width: 640px;
   flex-basis: calc(100% / 2 - 20px);
 
