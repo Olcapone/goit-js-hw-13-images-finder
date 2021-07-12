@@ -1,0 +1,246 @@
+:root {
+  --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  --animation-duration: 250ms;
+}
+
+//====== background
+
+.searchImages {
+  max-width: 1600px;
+  min-height: 100vh;
+
+  background-image: url('../images/bgimage.jpg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center top;
+  background-attachment: fixed;
+  padding-bottom: 60px;
+}
+
+.container {
+  padding: 0px 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.overlay {
+  background-image: linear-gradient(rgba(210, 220, 200, 0.5), rgba(0, 0, 0, 0.2)),
+    url('../images/bgimage.jpg');
+}
+
+//====== design form
+
+.form_container {
+  padding: 60px 0px;
+  width: 100%;
+
+  & form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  & label {
+    width: 55%;
+  }
+
+  & input {
+    width: 100%;
+    height: 42px;
+    border-radius: 4px;
+    padding: 10px;
+
+    background-color: rgba(255, 255, 255, 0.5);
+
+    &:focus {
+      border: 2px solid #4caf50;
+      outline: none;
+    }
+  }
+}
+
+//====== buttom
+
+.main-button {
+  //max-width: 150px;
+  margin-left: 20px;
+  padding: 10px 20px;
+  border-radius: 4px;
+
+  background-color: rgba(255, 255, 255, 0.7);
+  color: black;
+  border: 2px solid #4caf50;
+
+  &:hover,
+  &:focus {
+    background-color: #4caf50;
+    outline: none;
+  }
+}
+
+//====== image gallery
+
+.gallery {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  list-style: none;
+  padding-bottom: 30px;
+
+  & .photo-card:not(:nth-child(-n + 2)) {
+    margin-top: 40px;
+  }
+}
+.photo-card {
+  max-width: 640px;
+  flex-basis: calc(100% / 2 - 20px);
+
+  background-color: #fff;
+  overflow: hidden;
+  border-radius: 4px;
+
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
+      1px 4px 6px rgba(0, 0, 0, 0.16);
+  }
+}
+
+.img_thumb {
+  margin: 0px;
+}
+
+.stats {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.stats-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-basis: calc(100% / 4 - 5px);
+}
+
+.material-icons {
+  &:not(:last-child) {
+    margin-right: 5px;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+}
+//====== spinner
+.button_load {
+  display: flex;
+  align-items: center;
+  margin: 0px;
+
+  &:hover,
+  &:focus {
+    .loader:after {
+      background-color: #4caf50;
+    }
+  }
+}
+.label {
+  margin-left: 20px;
+  margin-right: 40px;
+}
+
+.loader {
+  font-size: 10px;
+  margin: 10px auto;
+  text-indent: -9999em;
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+  background: #4caf50;
+  background: -moz-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+  background: -webkit-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+  background: -o-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+  background: -ms-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+  background: linear-gradient(to right, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+  position: relative;
+  -webkit-animation: load3 1.4s infinite linear;
+  animation: load3 1.4s infinite linear;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+}
+.loader:before {
+  width: 50%;
+  height: 50%;
+  background: #4caf50;
+  border-radius: 100% 0 0 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+}
+.loader:after {
+  background: #ffffff;
+  width: 75%;
+  height: 75%;
+  border-radius: 50%;
+  content: '';
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+@-webkit-keyframes load3 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes load3 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+//====== common
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: 440px;
+  object-fit: cover;
+}
+button {
+  padding: 0px;
+  margin: 0px;
+}
