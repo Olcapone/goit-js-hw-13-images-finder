@@ -18,6 +18,7 @@ const loadMoreButton = new LoadMoreButton({
 
 refs.searhFormRef.addEventListener('submit', onSearch);
 refs.searhFormRef.addEventListener('click', inputClickCleaner);
+refs.galleryRef.addEventListener('click', OnImage);
 
 
 
@@ -41,6 +42,14 @@ function onSearch(e) {
     imagesApiServices.resetPage();
     mainAction();
     
+};
+
+function OnImage(e) {
+      
+    if (e.target.nodeName == 'IMG') {
+        const instance = basicLightbox.create(`<img class="lightbox__image" src="${e.target.dataset.source}" alt="" /> `);
+        instance.show(e);  
+    }
 };
 
 function inputClickCleaner(e) {
