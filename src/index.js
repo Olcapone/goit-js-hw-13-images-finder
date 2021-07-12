@@ -19,11 +19,10 @@ const loadMoreButton = new LoadMoreButton({
 refs.searhFormRef.addEventListener('submit', onSearch);
 refs.searhFormRef.addEventListener('click', inputClickCleaner);
 refs.galleryRef.addEventListener('click', OnImage);
+loadMoreButton.refs.button.addEventListener('click', onLoading);
 
 
-
-
-
+//======= function
 
 function mainAction() {
     
@@ -50,6 +49,18 @@ function OnImage(e) {
         const instance = basicLightbox.create(`<img class="lightbox__image" src="${e.target.dataset.source}" alt="" /> `);
         instance.show(e);  
     }
+};
+
+function onLoading(e) {
+
+    imagesApiServices.incrementPage();
+    mainAction();    
+   
+    const element = refs.galleryRef;
+    element.scrollIntoView({
+    behavior: 'smooth',
+    block: 'end',
+}); 
 };
 
 function inputClickCleaner(e) {
