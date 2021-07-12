@@ -17,6 +17,7 @@ const loadMoreButton = new LoadMoreButton({
 //====== Listeners
 
 refs.searhFormRef.addEventListener('submit', onSearch);
+refs.searhFormRef.addEventListener('click', inputClickCleaner);
 
 
 
@@ -41,3 +42,11 @@ function onSearch(e) {
     mainAction();
     
 };
+
+function inputClickCleaner(e) {
+
+    refs.galleryRef.innerHTML = '';
+    refs.loadButtonRef.classList.add('visually-hidden')
+    refs.overlowRef.classList.add('overlay');
+   
+}
