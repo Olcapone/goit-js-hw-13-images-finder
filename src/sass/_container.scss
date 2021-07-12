@@ -71,6 +71,7 @@
   background-color: rgba(255, 255, 255, 0.7);
   color: black;
   border: 2px solid #4caf50;
+  cursor: pointer;
 
   &:hover,
   &:focus {
@@ -99,6 +100,7 @@
   background-color: #fff;
   overflow: hidden;
   border-radius: 4px;
+  cursor: pointer;
 
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
