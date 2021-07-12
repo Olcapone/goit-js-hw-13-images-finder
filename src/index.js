@@ -14,3 +14,30 @@ const loadMoreButton = new LoadMoreButton({
     hidden: true
 });
 
+//====== Listeners
+
+refs.searhFormRef.addEventListener('submit', onSearch);
+
+
+
+
+
+
+function mainAction() {
+    
+    loadMoreButton.show();
+    loadMoreButton.disable();
+
+    imagesApiServices.fetchImages()
+        .then(doIt.renderCard)
+        .then(loadMoreButton.enable())
+        .catch(doIt.onFetchError);
+};
+
+function onSearch(e) {
+    e.preventDefault();
+    imagesApiServices.query = e.currentTarget.elements.query.value;
+    imagesApiServices.resetPage();
+    mainAction();
+    
+};
