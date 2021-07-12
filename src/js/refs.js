@@ -4,9 +4,7 @@ export default function refs() {
         searhFormRef: document.querySelector('#search-form'),
         overlowRef: document.querySelector('.searchImages'),
         galleryRef: document.getElementById('my-element-selector'),
-        lightboxRef: document.querySelector('.js-lightbox'),
-        modalImage: document.querySelector('.lightbox__image'),
-        modalClose: document.querySelector('.lightbox__button'),
+     
     }
     
 }

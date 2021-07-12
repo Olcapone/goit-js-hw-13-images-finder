@@ -18,9 +18,7 @@ let isLoading = false;
 //====== Listeners
 
 refs.searhFormRef.addEventListener('submit', onSearch);
-refs.searhFormRef.addEventListener('click', inputClickCleaner);
 refs.galleryRef.addEventListener('click', OnImage);
-
 
 
 //======= function
@@ -37,12 +35,13 @@ function mainAction() {
 
 function onSearch(e) {
     e.preventDefault();
-    imagesApiServices.query = e.currentTarget.elements.query.value;
-    imagesApiServices.resetPage();
-    mainAction();
-
     isLoading = true;
    
+    imagesApiServices.query = e.currentTarget.elements.query.value;
+    imagesApiServices.resetPage();
+    inputClickCleaner();
+    mainAction();
+ 
 };
 
 function OnImage(e) {
@@ -53,12 +52,12 @@ function OnImage(e) {
     }
 };
 
-function inputClickCleaner(e) {
+function inputClickCleaner() {
 
     refs.galleryRef.innerHTML = '';
     refs.loadButtonRef.classList.add('visually-hidden')
     refs.overlowRef.classList.add('overlay');
-     
+
 };
 
 //=====   infinity scroll
