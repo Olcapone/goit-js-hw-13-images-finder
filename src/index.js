@@ -8,30 +8,30 @@ import getRefs from './js/refs';
 
 const refs = getRefs();
 const imagesApiServices = new ImagesApiServices();
+let isLoading = false;
 
-const loadMoreButton = new LoadMoreButton({
-    selector: '[data-action="load-more"]',
-    hidden: true
-});
+ const loadMoreButton = new LoadMoreButton({
+     selector: '[data-action="load-more"]',
+     hidden: true
+ });
 
 //====== Listeners
 
 refs.searhFormRef.addEventListener('submit', onSearch);
 refs.searhFormRef.addEventListener('click', inputClickCleaner);
 refs.galleryRef.addEventListener('click', OnImage);
-loadMoreButton.refs.button.addEventListener('click', onLoading);
+
 
 
 //======= function
 
 function mainAction() {
     
-    loadMoreButton.show();
-    loadMoreButton.disable();
+     loadMoreButton.show();
+     loadMoreButton.disable();
 
     imagesApiServices.fetchImages()
         .then(doIt.renderCard)
-        .then(loadMoreButton.enable())
         .catch(doIt.onFetchError);
 };
 
@@ -40,7 +40,9 @@ function onSearch(e) {
     imagesApiServices.query = e.currentTarget.elements.query.value;
     imagesApiServices.resetPage();
     mainAction();
-    
+
+    isLoading = true;
+   
 };
 
 function OnImage(e) {
@@ -51,22 +53,28 @@ function OnImage(e) {
     }
 };
 
-function onLoading(e) {
-
-    imagesApiServices.incrementPage();
-    mainAction();    
-   
-    const element = refs.galleryRef;
-    element.scrollIntoView({
-    behavior: 'smooth',
-    block: 'end',
-}); 
-};
-
 function inputClickCleaner(e) {
 
     refs.galleryRef.innerHTML = '';
     refs.loadButtonRef.classList.add('visually-hidden')
     refs.overlowRef.classList.add('overlay');
-   
-}
+     
+};
+
+//=====   infinity scroll
+
+const ioCallback = ([entrie], observerRef) => {
+
+    if(isLoading){
+
+        if (!entrie.isIntersecting) return;
+
+        imagesApiServices.incrementPage();
+        mainAction();    
+  }
+};
+
+const observer = new IntersectionObserver(ioCallback, { threshold: 0.5 });
+
+const target = document.querySelector('#anchor');
+observer.observe(target);
